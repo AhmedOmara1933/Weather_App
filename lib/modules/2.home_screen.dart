@@ -185,7 +185,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                           Container(
                             margin: const EdgeInsetsDirectional.only(
-
                                 top: 20.0, bottom: 30.0),
                             height: 130.0,
                             child: ListView.separated(
