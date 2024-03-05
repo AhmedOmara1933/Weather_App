@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../model/weather_model.dart';
 import '../styles/clip.dart';
 import '../styles/color.dart';
 
 class BuildCardItem extends StatelessWidget {
-  final WeatherModel? model;
+  final model;
 
   const BuildCardItem({Key? key, this.model}) : super(key: key);
 
@@ -13,7 +14,7 @@ class BuildCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (model == null) {
-      return Center(child: LinearProgressIndicator());
+      return Center(child: LinearProgressIndicator(color: Colors.blue,));
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,99 +126,103 @@ class BuildCardItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      ' ${model!.current!.condition!.text}\n'
-                      ' ${model!.forecast!.forecastday![0].day!.condition!.text}>',
-                      style: GoogleFonts.acme(
-                          color: Color(0xff8eb1c4),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              //${model!.forecast!.forecastday![0].day!.mintempC != null ?model!.forecast!.forecastday![0].day!.mintempC.toString() + '°C' : 'N/A'}
-                              '${model!.forecast!.forecastday![0].day!.maxtempC}',
-                              style: GoogleFonts.acme(
-                                  color: const Color(0xff8eb1c4),
-                                  fontSize: 17.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              '°C',
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        ' ${model!.current!.condition!.text}\n'
+                        ' ${model!.forecast!.forecastday![0].day!.condition!.text}>',
+                        style: GoogleFonts.acme(
+                            color: Color(0xff8eb1c4),
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                //${model!.forecast!.forecastday![0].day!.mintempC != null ?model!.forecast!.forecastday![0].day!.mintempC.toString() + '°C' : 'N/A'}
+                                '${model!.forecast!.forecastday![0].day!.maxtempC}',
+                                style: GoogleFonts.acme(
+                                    color: const Color(0xff8eb1c4),
+                                    fontSize: 17.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const Text(
+                                '°C',
+                                style: TextStyle(
+                                    color: Color(0xff8eb1c4),
+                                    fontSize: 11.0,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ],
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.0),
+                            child: Text(
+                              '~',
                               style: TextStyle(
-                                  color: Color(0xff8eb1c4),
-                                  fontSize: 11.0,
-                                  fontWeight: FontWeight.w900),
-                            ),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Text(
-                            '~',
-                            style: TextStyle(
-                              color: Color(0xff8eb1c4),
+                                color: Color(0xff8eb1c4),
+                              ),
                             ),
                           ),
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              // model!.forecast!.forecastday![0].day!.mintempC !=
-                              //         null
-                              //     ? '${model!.forecast!.forecastday![0].day!.mintempC}°C'
-                              //     : 'N/A',
-                              '${model!.current!.tempC ?? "N/A"}',
-                              style: GoogleFonts.acme(
-                                  color: const Color(0xff8eb1c4),
-                                  fontSize: 17.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              '°C',
-                              style: TextStyle(
-                                  color: Color(0xff8eb1c4),
-                                  fontSize: 11.0,
-                                  fontWeight: FontWeight.w900),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                // model!.forecast!.forecastday![0].day!.mintempC !=
+                                //         null
+                                //     ? '${model!.forecast!.forecastday![0].day!.mintempC}°C'
+                                //     : 'N/A',
+                                '${model!.current!.tempC ?? "N/A"}',
+                                style: GoogleFonts.acme(
+                                    color: const Color(0xff8eb1c4),
+                                    fontSize: 17.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const Text(
+                                '°C',
+                                style: TextStyle(
+                                    color: Color(0xff8eb1c4),
+                                    fontSize: 11.0,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '${model!.location!.country}',
-                          style: GoogleFonts.acme(
-                              color: const Color(0xff276487),
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '${model!.location!.tzId}',
-                          style: GoogleFonts.acme(
-                              color: const Color(0xff276487),
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '${model!.location!.country}',
+                            style: GoogleFonts.acme(
+                                color: const Color(0xff276487),
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '${model!.location!.tzId}',
+                            style: GoogleFonts.acme(
+                                color: const Color(0xff276487),
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
 
               ],
@@ -247,4 +252,7 @@ class BuildCardItem extends StatelessWidget {
       return 'wind.png';
     }
   }
+
+
+
 }

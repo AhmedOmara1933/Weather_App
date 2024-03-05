@@ -9,9 +9,6 @@ import 'package:weather_app/shared/styles/color.dart';
 class WeatherHomeLayout extends StatelessWidget {
   WeatherHomeLayout({super.key});
 
-  List<IconData> iconList = [];
-  int activeIndex = 1;
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherAppCubit, WeatherAppState>(
@@ -20,11 +17,8 @@ class WeatherHomeLayout extends StatelessWidget {
       },
       builder: (context, state) {
         var cubit = WeatherAppCubit.get(context);
-
         return Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 0.0,
-          ),
+          appBar: cubit.appBars[cubit.currentIndex],
           bottomNavigationBar: CurvedNavigationBar(
             items: const [
               Icon(

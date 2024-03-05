@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:weather_app/layout/weather_home_layout.dart';
-import 'package:weather_app/modules/3.location_screen.dart';
+import 'package:weather_app/shared/styles/color.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -10,8 +10,9 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
+        systemOverlayStyle: SystemUiOverlayStyle(
           systemNavigationBarColor: Color(0xfffcfdff),
+          statusBarColor: baseColor
         ),
       ),
       body: Container(

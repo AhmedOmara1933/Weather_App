@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/model/weather_model.dart';
+import 'package:weather_app/shared/cubit/weather_app_cubit.dart';
+import 'package:weather_app/shared/cubit/weather_app_state.dart';
 import '../styles/clip.dart';
 import '../styles/color.dart';
 
@@ -19,11 +22,17 @@ class BuildCategoryItem2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<WeatherAppCubit, WeatherAppState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    var cubit=WeatherAppCubit.get(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 160.0,
+          width: 170.0,
           child: Stack(
             alignment: AlignmentDirectional.topEnd,
             children: [
@@ -101,7 +110,7 @@ class BuildCategoryItem2 extends StatelessWidget {
             ],
           ),
           height: 65.0,
-          width: 175.0,
+          width: 185.0,
           child: Padding(
             padding: const EdgeInsets.only(left: 5.0,right: 5.0),
             child: Column(
@@ -171,7 +180,7 @@ class BuildCategoryItem2 extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    '${forecastday.date}',
+                    '${cubit.getDayName(forecastday.date.toString())}',
                     style: const TextStyle(
                         color: Color(0xff276487),
                         fontSize: 13.0,
@@ -184,6 +193,8 @@ class BuildCategoryItem2 extends StatelessWidget {
         ),
       ],
     );
+  },
+);
   }
 
   String isWeatherImage() {

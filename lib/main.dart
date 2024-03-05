@@ -5,7 +5,6 @@ import 'package:weather_app/shared/cubit/bloc_observer.dart';
 import 'package:weather_app/shared/cubit/weather_app_cubit.dart';
 import 'package:weather_app/shared/network/remote.dart';
 import 'package:weather_app/shared/styles/color.dart';
-import 'layout/weather_home_layout.dart';
 import 'modules/1.intro_page.dart';
 
 void main() {
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => WeatherAppCubit()
             ..searchWeatherData()
-            ..getWeatherData(),
+            ..getWeatherData()
         ),
       ],
       child: MaterialApp(

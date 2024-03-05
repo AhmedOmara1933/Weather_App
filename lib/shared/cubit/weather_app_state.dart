@@ -1,8 +1,11 @@
+import 'dart:io';
+
 abstract class WeatherAppState {}
 
 class WeatherAppInitial extends WeatherAppState {}
 
 class WeatherChangeBottomNavBar extends WeatherAppState {}
+class ImagePickerState extends WeatherAppState {}
 
 class GetWeatherDataLoadingState extends WeatherAppState {}
 
@@ -22,4 +25,28 @@ class SearchWeatherDataErrorState extends WeatherAppState {
   final String? error;
 
   SearchWeatherDataErrorState({required this.error});
+}
+
+class ImagePickerSuccessState extends WeatherAppState {
+  final File image;
+
+  ImagePickerSuccessState({required this.image});
+}
+
+class ImagePickerCanceledState extends WeatherAppState {}
+
+class ImagePickerErrorState extends WeatherAppState {
+  final String error;
+
+  ImagePickerErrorState({required this.error});
+}
+
+class GetWeatherNameDataLoadingState extends WeatherAppState {}
+
+class GetWeatherNameDataSuccessState extends WeatherAppState {}
+
+class GetWeatherNameDataErrorState extends WeatherAppState {
+  final String? error;
+
+  GetWeatherNameDataErrorState({required this.error});
 }

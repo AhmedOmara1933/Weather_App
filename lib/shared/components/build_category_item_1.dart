@@ -60,7 +60,7 @@ class BuildCategoryItem extends StatelessWidget {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 10.0,bottom: 10.0,
+                          padding: const EdgeInsets.only(top: 10.0,
                           left: 10.0,right: 2.0),
                           child: Text(
                             '${weatherInfo}',

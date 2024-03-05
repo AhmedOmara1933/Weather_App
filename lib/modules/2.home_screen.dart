@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,199 +59,230 @@ class HomeScreen extends StatelessWidget {
           }
         }
 
-        return Scaffold(
-          appBar: AppBar(),
-          body: cubit.weatherGetModel == null
-              ? Center(child: CircularProgressIndicator())
-              : Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                            'images/Screenshot 2024-02-21 182537.png'),
-                        fit: BoxFit.cover),
-                  ),
-                  child: LiquidPullToRefresh(
-                    color: Colors.transparent,
-                    backgroundColor: Color(0xff276487),
-                    height: 300.0,
-                    animSpeedFactor: 2,
-                    onRefresh: () async {
-                      cubit.getWeatherData();
-                      return await Future.delayed(Duration(seconds: 1));
-                    },
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'images/Screenshot 2024-02-21 182537.png'),
-                              fit: BoxFit.cover)),
-                      child: ListView(
-                        physics: BouncingScrollPhysics(),
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 30.0, left: 20.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${cubit.weatherGetModel!.current!.tempC}',
-                                          style: GoogleFonts.acme(
-                                              color: const Color(0xff276487),
-                                              fontSize: 75.0,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.only(left: 2.0),
-                                          child: Text(
-                                            'o',
-                                            style: TextStyle(
-                                              color: Color(0xff276487),
-                                              fontSize: 30.0,
-                                            ),
+        return cubit.weatherGetModel == null
+            ? Center(child: CircularProgressIndicator())
+            : Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image:
+                          AssetImage('images/Screenshot 2024-02-21 182537.png'),
+                      fit: BoxFit.cover),
+                ),
+                child: LiquidPullToRefresh(
+                  color: Colors.transparent,
+                  backgroundColor: Color(0xff276487),
+                  height: 300.0,
+                  animSpeedFactor: 2,
+                  onRefresh: () async {
+                    cubit.getWeatherData();
+                    return await Future.delayed(Duration(seconds: 1));
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                'images/Screenshot 2024-02-21 182537.png'),
+                            fit: BoxFit.cover)),
+                    child: ListView(
+                      physics: BouncingScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30.0, left: 20.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${cubit.weatherGetModel!.current!.tempC}',
+                                        style: GoogleFonts.acme(
+                                            color: const Color(0xff276487),
+                                            fontSize: 75.0,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 2.0),
+                                        child: Text(
+                                          'o',
+                                          style: TextStyle(
+                                            color: Color(0xff276487),
+                                            fontSize: 30.0,
                                           ),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.only(top: 10.0),
-                                          child: Text(
-                                            'c',
-                                            style: TextStyle(
-                                              color: Color(0xff276487),
-                                              fontSize: 40.0,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on,
-                                          color: Color(0xff276487),
-                                        ),
-                                        Text(
-                                          '${cubit.weatherGetModel == null ? "N/A" : cubit.weatherGetModel!.location!.tzId}',
-                                          style: const TextStyle(
-                                              color: Color(0xff276487),
-                                              fontSize: 22.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 15.0,
-                                    ),
-                                    Text(
-                                      '${cubit.weatherGetModel!.forecast!.forecastday![0].day!.maxtempC} / ${cubit.weatherGetModel!.forecast!.forecastday![0].day!.mintempC ?? "N/A"} Feels like ${cubit.weatherGetModel!.forecast!.forecastday![0].day!.avgtempC ?? "N/A"} ',
-                                      style: TextStyle(
-                                          color: Color(0xff276487),
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.5),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Text(
-                                        'lastUpdate: ${cubit.weatherGetModel!.location!.localtime}',
-                                        style: TextStyle(
-                                          color: Color(0xff276487),
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 13.0,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 5.0),
-                                    child: Image(
-                                      image: AssetImage(
-                                          'images/${isWeatherImage()}'),
-                                      height: 160.0,
-                                      width: 160.0,
-                                      fit: BoxFit.cover,
+                                      const Padding(
+                                        padding: EdgeInsets.only(top: 10.0),
+                                        child: Text(
+                                          'c',
+                                          style: TextStyle(
+                                            color: Color(0xff276487),
+                                            fontSize: 40.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on,
+                                        color: Color(0xff276487),
+                                      ),
+                                      Text(
+                                        '${cubit.weatherGetModel == null ? "N/A" : cubit.weatherGetModel!.location!.tzId}',
+                                        style: const TextStyle(
+                                            color: Color(0xff276487),
+                                            fontSize: 22.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 15.0,
+                                  ),
+                                  Text(
+                                    '${cubit.weatherGetModel!.forecast!.forecastday![0].day!.maxtempC} / ${cubit.weatherGetModel!.forecast!.forecastday![0].day!.mintempC ?? "N/A"} Feels like ${cubit.weatherGetModel!.forecast!.forecastday![0].day!.avgtempC ?? "N/A"} ',
+                                    style: TextStyle(
+                                        color: Color(0xff276487),
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.5),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text(
+                                      'lastUpdate: ${cubit.weatherGetModel!.location!.localtime}',
+                                      style: TextStyle(
+                                        color: Color(0xff276487),
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 13.0,
+                                      ),
                                     ),
                                   ),
-                                )
+                                ],
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 5.0),
+                                  child: Image(
+                                    image: AssetImage(
+                                        'images/${isWeatherImage()}'),
+                                    height: 160.0,
+                                    width: 160.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsetsDirectional.only(
+                              top: 20.0, bottom: 30.0),
+                          height: 130.0,
+                          child: ListView.separated(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsetsDirectional.symmetric(
+                                  horizontal: 20.0),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) =>
+                                  BuildCategoryItem(
+                                    model: cubit.weatherGetModel,
+                                    weatherSign: weatherDetails[index][3],
+                                    weatherImage: weatherDetails[index][2],
+                                    weatherCondition: weatherDetails[index][1],
+                                    weatherInfo: weatherDetails[index][0],
+                                  ),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                    width: 15.0,
+                                  ),
+                              itemCount: weatherDetails.length),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Text(
+                            'Today',
+                            style: TextStyle(
+                                color: Color(0xff276487),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 35.0),
+                          ),
+                        ),
+                        // Image(
+                        //   image: AssetImage(
+                        //       'images/Screenshot_2024-03-01_042742-removebg-preview.png'),
+                        //   fit: BoxFit.fill,
+                        //   height: 200.0,
+                        // ),
+                        Container(
+                          height: 200,
+                          child: LineChart(
+                            LineChartData(
+                              gridData: FlGridData(show: false),
+                              titlesData: FlTitlesData(show: false),
+                              borderData: FlBorderData(
+                                show: true,
+                                border: Border.all(
+
+                                  width: 0.0,
+                                ),
+                              ),
+                              minX: 0,
+                              maxX: 7,
+                              minY: 0,
+                              maxY: 6,
+                              lineBarsData: [
+                                LineChartBarData(
+                                  spots: [
+                                    FlSpot(0, 3),
+                                    FlSpot(1, 1),
+                                    FlSpot(2, 4),
+                                    FlSpot(3, 2),
+                                    FlSpot(4, 5),
+                                    FlSpot(5, 3),
+                                    FlSpot(6, 4),
+                                  ],
+                                  isCurved: true,
+                                  dotData: FlDotData(show: false),
+                                  belowBarData: BarAreaData(show: false),
+                                ),
                               ],
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsetsDirectional.only(
-                                top: 20.0, bottom: 30.0),
-                            height: 130.0,
-                            child: ListView.separated(
-                                physics: const BouncingScrollPhysics(),
-                                padding: const EdgeInsetsDirectional.symmetric(
-                                    horizontal: 20.0),
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) =>
-                                    BuildCategoryItem(
-                                      model: cubit.weatherGetModel,
-                                      weatherSign: weatherDetails[index][3],
-                                      weatherImage: weatherDetails[index][2],
-                                      weatherCondition: weatherDetails[index]
-                                          [1],
-                                      weatherInfo: weatherDetails[index][0],
-                                    ),
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(
-                                      width: 15.0,
-                                    ),
-                                itemCount: weatherDetails.length),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Text(
-                              'Today',
-                              style: TextStyle(
-                                  color: Color(0xff276487),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 35.0),
-                            ),
-                          ),
-                          Image(
-                            image: AssetImage(
-                                'images/Screenshot_2024-03-01_042742-removebg-preview.png'),
-                            fit: BoxFit.fill,
-                            height: 200.0,
-                          ),
-                          Container(
-                            margin: const EdgeInsetsDirectional.only(top: 0.0),
-                            height: 150.0,
-                            child: ListView.separated(
-                                physics: const BouncingScrollPhysics(),
-                                padding: const EdgeInsetsDirectional.symmetric(
-                                    horizontal: 20.0),
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) =>
-                                    BuildCategoryItem2(
-                                      index: index,
-                                      model: cubit.weatherGetModel!,
-                                      forecastday: cubit.weatherGetModel!
-                                          .forecast!.forecastday![index],
-                                    ),
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(
-                                      width: 15.0,
-                                    ),
-                                itemCount: cubit.weatherGetModel!.forecast!
-                                    .forecastday!.length),
-                          ),
-                        ],
-                      ),
+                        ),
+                        Container(
+                          margin: const EdgeInsetsDirectional.only(top: 0.0),
+                          height: 150.0,
+                          child: ListView.separated(
+                              physics: const BouncingScrollPhysics(),
+                              padding: const EdgeInsetsDirectional.symmetric(
+                                  horizontal: 20.0),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) =>
+                                  BuildCategoryItem2(
+                                    index: index,
+                                    model: cubit.weatherGetModel!,
+                                    forecastday: cubit.weatherGetModel!
+                                        .forecast!.forecastday![index],
+                                  ),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                    width: 15.0,
+                                  ),
+                              itemCount: cubit.weatherGetModel!.forecast!
+                                  .forecastday!.length),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-        );
+              );
       },
     );
   }
