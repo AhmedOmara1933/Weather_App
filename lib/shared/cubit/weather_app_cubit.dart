@@ -71,9 +71,10 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
     // Return the corresponding day name
     return dayNames[dayOfWeek - 1];
   }
+
   //todo/////////////////////////////////////getWeatherImage//////////////////////////////////////
   String getWeatherImage({required double model}) {
-    double temperature = model ;
+    double temperature = model;
 
     if (temperature > 25.0) {
       return 'sun.png';
@@ -91,6 +92,7 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
       return 'wind.png';
     }
   }
+
   //todo/////////////////////////////////////searchWeatherData//////////////////////////////////////
 
   searchWeatherData({String? text}) {
