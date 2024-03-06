@@ -229,7 +229,6 @@ class HomeScreen extends StatelessWidget {
                               borderData: FlBorderData(
                                 show: true,
                                 border: Border.all(
-
                                   width: 0.0,
                                 ),
                               ),
@@ -287,3 +286,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
