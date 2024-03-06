@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:weather_app/shared/components/build_fl_chart.dart';
 import 'package:weather_app/shared/cubit/weather_app_cubit.dart';
 import 'package:weather_app/shared/cubit/weather_app_state.dart';
 import '../shared/components/build_category_item_1.dart';
@@ -64,7 +65,6 @@ class HomeScreen extends StatelessWidget {
                                 'images/Screenshot 2024-02-21 182537.png'),
                             fit: BoxFit.cover)),
                     child: ListView(
-
                       physics: BouncingScrollPhysics(),
                       children: [
                         Padding(
@@ -195,43 +195,7 @@ class HomeScreen extends StatelessWidget {
                                 fontSize: 35.0),
                           ),
                         ),
-                        Container(
-                          height: 150,
-                          margin: EdgeInsets.only(bottom: 20.0),
-                          child: LineChart(LineChartData(
-                            gridData: FlGridData(
-                              show: false,
-                            ),
-                            titlesData: FlTitlesData(
-                              show: false,
-                            ),
-                            borderData: FlBorderData(
-                                show: false, border: Border.all(width: 0.0)),
-                            minX: 0,
-                            maxX: 11,
-                            minY: 0,
-                            maxY: 7,
-                            lineBarsData: [
-                              LineChartBarData(
-                                spots: const [
-                                  FlSpot(0, 3),
-                                  FlSpot(2.6, 2),
-                                  FlSpot(4.9, 5),
-                                  FlSpot(6.8, 3.1),
-                                  FlSpot(8, 4),
-                                  FlSpot(9.5, 3),
-                                  FlSpot(11, 4),
-                                ],
-                                isCurved: true,
-                                color: Color(0xff4bc8f0),
-                                barWidth: 4,
-                                isStrokeCapRound: true,
-                                belowBarData: BarAreaData(
-                                    show: true, color: Color(0xffd1f2fc)),
-                              ),
-                            ],
-                          )),
-                        ),
+                        FlChart(),
                         Container(
                           margin: const EdgeInsetsDirectional.only(top: 0.0),
                           height: 150.0,
@@ -243,7 +207,7 @@ class HomeScreen extends StatelessWidget {
                               itemBuilder: (context, index) =>
                                   BuildCategoryItem2(
                                     index: index,
-                                    model: cubit.weatherGetModel!,
+                                    model: cubit.weatherGetModel,
                                     forecastday: cubit.weatherGetModel!
                                         .forecast!.forecastday![index],
                                   ),
