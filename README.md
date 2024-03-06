@@ -71,3 +71,11 @@ emit(ImagePickerCanceledState());
 }
 },
 )
+
+
+
+// weatherList = value.data;
+//  print(weatherList['forecast']['forecastday']);
+// for (var day in weatherList['forecast']['forecastday']) {
+//   print(day['astro']);
+// }

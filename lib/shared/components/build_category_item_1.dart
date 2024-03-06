@@ -15,7 +15,8 @@ class BuildCategoryItem extends StatelessWidget {
       this.model,
       required this.weatherImage,
       required this.weatherCondition,
-      required this.weatherInfo, required this.weatherSign})
+      required this.weatherInfo,
+        required this.weatherSign})
       : super(key: key);
 
   @override

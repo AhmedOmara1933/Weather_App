@@ -15,6 +15,9 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
   WeatherAppCubit() : super(WeatherAppInitial());
 
   static WeatherAppCubit get(context) => BlocProvider.of(context);
+
+  WeatherModel? weatherGetModel;
+  WeatherModel? weatherSearchModel;
   List screens = [HomeScreen(), LocationScreen(), ProfileScreen()];
   List appBars = [
     AppBar(),
@@ -55,7 +58,6 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
     DateTime dateTime = DateTime.parse(dateString);
     // Use the 'weekday' property to get the day of the week (1 for Monday, 7 for Sunday)
     int dayOfWeek = dateTime.weekday;
-
     // Create a list of day names
     List<String> dayNames = [
       'Monday',
@@ -66,27 +68,38 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
       'Saturday',
       'Sunday'
     ];
-
     // Return the corresponding day name
     return dayNames[dayOfWeek - 1];
   }
+  //todo/////////////////////////////////////getWeatherImage//////////////////////////////////////
+  String getWeatherImage({required double model}) {
+    double temperature = model ;
 
+    if (temperature > 25.0) {
+      return 'sun.png';
+    } else if (temperature >= 20.0 && temperature <= 25.0) {
+      return 'weather.png';
+    } else if (temperature >= 15.0 && temperature < 20.0) {
+      return 'normal.png';
+    } else if (temperature >= 10.0 && temperature < 15.0) {
+      return 'heavy-rain.png';
+    } else if (temperature >= 3.0 && temperature < 10.0) {
+      return 'cloudy.png';
+    } else if (temperature >= 0.0 && temperature < 3.0) {
+      return 'snow.png';
+    } else {
+      return 'wind.png';
+    }
+  }
   //todo/////////////////////////////////////searchWeatherData//////////////////////////////////////
-
-  WeatherModel? weatherSearchModel;
 
   searchWeatherData({String? text}) {
     emit(SearchWeatherDataLoadingState());
     DioHelper.getData(url: 'v1/forecast.json', query: {
       'key': 'ea36ba7cf6fc4eb482a154659242402',
       'q': '$text ',
-      'days': 1,
+      'days': 4,
     }).then((value) {
-      // weatherList = value.data;
-      //  print(weatherList['forecast']['forecastday']);
-      // for (var day in weatherList['forecast']['forecastday']) {
-      //   print(day['astro']);
-      // }
       weatherSearchModel = WeatherModel.fromJson(value.data);
       print(weatherSearchModel!.forecast!.forecastday![0].day!.mintempC);
 
@@ -98,8 +111,6 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
   }
 
 //todo/////////////////////////////////////getWeatherData//////////////////////////////////////
-
-  WeatherModel? weatherGetModel;
 
   getWeatherData() {
     emit(GetWeatherDataLoadingState());

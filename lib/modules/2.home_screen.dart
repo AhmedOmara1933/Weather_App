@@ -39,26 +39,6 @@ class HomeScreen extends StatelessWidget {
             'km/h'
           ],
         ];
-        String isWeatherImage() {
-          double temperature = cubit.weatherGetModel!.current!.tempC;
-
-          if (temperature > 25.0) {
-            return 'sun.png';
-          } else if (temperature >= 17.0 && temperature <= 24.0) {
-            return 'weather.png';
-          } else if (temperature >= 13.0 && temperature < 17.0) {
-            return 'normal.png';
-          } else if (temperature >= 8.0 && temperature < 13.0) {
-            return 'heavy-rain.png';
-          } else if (temperature >= 3.0 && temperature < 8.0) {
-            return 'cloudy.png';
-          } else if (temperature >= 0.0 && temperature < 3.0) {
-            return 'snow.png';
-          } else {
-            return 'wind.png';
-          }
-        }
-
         return cubit.weatherGetModel == null
             ? Center(child: CircularProgressIndicator())
             : Container(
@@ -84,9 +64,7 @@ class HomeScreen extends StatelessWidget {
                                 'images/Screenshot 2024-02-21 182537.png'),
                             fit: BoxFit.cover)),
                     child: ListView(
-                      padding: EdgeInsetsDirectional.only(
-                        bottom: 20.0,
-                      ),
+
                       physics: BouncingScrollPhysics(),
                       children: [
                         Padding(
@@ -174,10 +152,10 @@ class HomeScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 5.0),
                                   child: Image(
                                     image: AssetImage(
-                                        'images/${isWeatherImage()}'),
-                                    height: 160.0,
-                                    width: 160.0,
-                                    fit: BoxFit.cover,
+                                        'images/${cubit.getWeatherImage(model: cubit.weatherGetModel!.current!.tempC)}'),
+                                    height: 190.0,
+                                    width: 190.0,
+                                    //fit: BoxFit.cover,
                                   ),
                                 ),
                               )
