@@ -84,6 +84,9 @@ class HomeScreen extends StatelessWidget {
                                 'images/Screenshot 2024-02-21 182537.png'),
                             fit: BoxFit.cover)),
                     child: ListView(
+                      padding: EdgeInsetsDirectional.only(
+                        bottom: 20.0,
+                      ),
                       physics: BouncingScrollPhysics(),
                       children: [
                         Padding(
@@ -214,8 +217,8 @@ class HomeScreen extends StatelessWidget {
                                 fontSize: 35.0),
                           ),
                         ),
-                       Container(
-                         height: 150,
+                        Container(
+                          height: 150,
                           margin: EdgeInsets.only(bottom: 20.0),
                           child: LineChart(LineChartData(
                             gridData: FlGridData(
