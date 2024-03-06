@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/modules/2.home_screen.dart';
 import 'package:weather_app/shared/cubit/weather_app_cubit.dart';
 import 'package:weather_app/shared/cubit/weather_app_state.dart';
 import '../shared/components/build_card_item.dart';

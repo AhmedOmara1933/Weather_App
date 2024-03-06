@@ -26,10 +26,10 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
     AppBar()
   ];
   int currentIndex = 1;
-
   File? image;
   final imagePicker = ImagePicker();
 
+  //todo/////////////////////////////////////uploadCameraImage//////////////////////////////////////
   uploadCameraImage() async {
     await imagePicker.pickImage(source: ImageSource.camera).then((value) {
       if (value != null) {
@@ -43,18 +43,41 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
     });
   }
 
+//todo/////////////////////////////////////changeBottomNavBar//////////////////////////////////////
   void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(WeatherChangeBottomNavBar());
   }
 
-  WeatherModel? weatherSearchModel;
+//todo/////////////////////////////////////getDayName//////////////////////////////////////
 
+  String getDayName(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    // Use the 'weekday' property to get the day of the week (1 for Monday, 7 for Sunday)
+    int dayOfWeek = dateTime.weekday;
+
+    // Create a list of day names
+    List<String> dayNames = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
+    ];
+
+    // Return the corresponding day name
+    return dayNames[dayOfWeek - 1];
+  }
+
+  //todo/////////////////////////////////////searchWeatherData//////////////////////////////////////
+
+  WeatherModel? weatherSearchModel;
 
   searchWeatherData({String? text}) {
     emit(SearchWeatherDataLoadingState());
-    DioHelper.getData(url: 'v1/forecast.json',
-        query: {
+    DioHelper.getData(url: 'v1/forecast.json', query: {
       'key': 'ea36ba7cf6fc4eb482a154659242402',
       'q': '$text ',
       'days': 1,
@@ -74,6 +97,7 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
     });
   }
 
+//todo/////////////////////////////////////getWeatherData//////////////////////////////////////
 
   WeatherModel? weatherGetModel;
 
@@ -90,18 +114,5 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
       emit(GetWeatherDataErrorState(error: error.toString()));
       print(error);
     });
-  }
-
-
-  String getDayName(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    // Use the 'weekday' property to get the day of the week (1 for Monday, 7 for Sunday)
-    int dayOfWeek = dateTime.weekday;
-
-    // Create a list of day names
-    List<String> dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-    // Return the corresponding day name
-    return dayNames[dayOfWeek - 1];
   }
 }

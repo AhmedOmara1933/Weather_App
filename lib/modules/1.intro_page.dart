@@ -11,17 +11,15 @@ class IntroPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
-          systemNavigationBarColor: Color(0xfffcfdff),
-          statusBarColor: baseColor
-        ),
+            systemNavigationBarColor: Color(0xfffcfdff),
+            statusBarColor: baseColor),
       ),
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
                     'images/WhatsApp Image 2024-02-21 at 01.39.01_24dc32b9.jpg'),
-                fit: BoxFit.cover)
-        ),
+                fit: BoxFit.cover)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +116,11 @@ class IntroPage extends StatelessWidget {
                         padding: const EdgeInsetsDirectional.symmetric(
                             vertical: 20.0, horizontal: 40.0),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => WeatherHomeLayout(),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WeatherHomeLayout(),
+                              ));
                         },
                         child: const Text(
                           'Register Now',
@@ -144,7 +146,11 @@ class IntroPage extends StatelessWidget {
                         padding: const EdgeInsetsDirectional.symmetric(
                             vertical: 20.0, horizontal: 40.0),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => WeatherHomeLayout(),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WeatherHomeLayout(),
+                              ));
                         },
                         child: const Text(
                           'Sign in',

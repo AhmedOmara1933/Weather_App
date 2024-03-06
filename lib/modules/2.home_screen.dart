@@ -214,46 +214,42 @@ class HomeScreen extends StatelessWidget {
                                 fontSize: 35.0),
                           ),
                         ),
-                        // Image(
-                        //   image: AssetImage(
-                        //       'images/Screenshot_2024-03-01_042742-removebg-preview.png'),
-                        //   fit: BoxFit.fill,
-                        //   height: 200.0,
-                        // ),
-                        Container(
-                          height: 200,
-                          child: LineChart(
-                            LineChartData(
-                              gridData: FlGridData(show: false),
-                              titlesData: FlTitlesData(show: false),
-                              borderData: FlBorderData(
-                                show: true,
-                                border: Border.all(
-                                  width: 0.0,
-                                ),
-                              ),
-                              minX: 0,
-                              maxX: 7,
-                              minY: 0,
-                              maxY: 6,
-                              lineBarsData: [
-                                LineChartBarData(
-                                  spots: [
-                                    FlSpot(0, 3),
-                                    FlSpot(1, 1),
-                                    FlSpot(2, 4),
-                                    FlSpot(3, 2),
-                                    FlSpot(4, 5),
-                                    FlSpot(5, 3),
-                                    FlSpot(6, 4),
-                                  ],
-                                  isCurved: true,
-                                  dotData: FlDotData(show: false),
-                                  belowBarData: BarAreaData(show: false),
-                                ),
-                              ],
+                       Container(
+                         height: 150,
+                          margin: EdgeInsets.only(bottom: 20.0),
+                          child: LineChart(LineChartData(
+                            gridData: FlGridData(
+                              show: false,
                             ),
-                          ),
+                            titlesData: FlTitlesData(
+                              show: false,
+                            ),
+                            borderData: FlBorderData(
+                                show: false, border: Border.all(width: 0.0)),
+                            minX: 0,
+                            maxX: 11,
+                            minY: 0,
+                            maxY: 7,
+                            lineBarsData: [
+                              LineChartBarData(
+                                spots: const [
+                                  FlSpot(0, 3),
+                                  FlSpot(2.6, 2),
+                                  FlSpot(4.9, 5),
+                                  FlSpot(6.8, 3.1),
+                                  FlSpot(8, 4),
+                                  FlSpot(9.5, 3),
+                                  FlSpot(11, 4),
+                                ],
+                                isCurved: true,
+                                color: Color(0xff4bc8f0),
+                                barWidth: 4,
+                                isStrokeCapRound: true,
+                                belowBarData: BarAreaData(
+                                    show: true, color: Color(0xffd1f2fc)),
+                              ),
+                            ],
+                          )),
                         ),
                         Container(
                           margin: const EdgeInsetsDirectional.only(top: 0.0),
@@ -286,9 +282,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

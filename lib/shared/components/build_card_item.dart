@@ -1,20 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app/model/weather_model.dart';
 import '../styles/clip.dart';
 import '../styles/color.dart';
 
 class BuildCardItem extends StatelessWidget {
-  final model;
+  final WeatherModel? model;
 
   const BuildCardItem({Key? key, this.model}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
     if (model == null) {
-      return Center(child: LinearProgressIndicator(color: Colors.blue,));
+      return Center(
+          child: LinearProgressIndicator(
+        color: Colors.blue,
+      ));
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +88,7 @@ class BuildCardItem extends StatelessWidget {
                 ),
               ],
             ),
-             Padding(
+            Padding(
               padding: EdgeInsets.only(bottom: 10.0, right: 15.0),
               child: Image(
                 image: AssetImage('images/${isWeatherImage()}'),
@@ -174,10 +175,6 @@ class BuildCardItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                // model!.forecast!.forecastday![0].day!.mintempC !=
-                                //         null
-                                //     ? '${model!.forecast!.forecastday![0].day!.mintempC}°C'
-                                //     : 'N/A',
                                 '${model!.current!.tempC ?? "N/A"}',
                                 style: GoogleFonts.acme(
                                     color: const Color(0xff8eb1c4),
@@ -224,7 +221,6 @@ class BuildCardItem extends StatelessWidget {
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -252,7 +248,4 @@ class BuildCardItem extends StatelessWidget {
       return 'wind.png';
     }
   }
-
-
-
 }
