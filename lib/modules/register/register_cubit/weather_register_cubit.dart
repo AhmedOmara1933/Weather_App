@@ -28,7 +28,7 @@ class WeatherRegisterCubit extends Cubit<WeatherRegisterState> {
     required String email,
     required String password,
   }) {
-    DioHelper.postData(url: REGISTER, data: {
+    DioHelper2.postData(url: REGISTER, data: {
       'name': name,
       'phone': phone,
       'email': email,

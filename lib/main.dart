@@ -6,7 +6,8 @@ import 'package:weather_app/src/src.dart';
 
 
 void main() {
-  DioHelper.init();
+  DioHelper1.init();
+  DioHelper2.init();
   Bloc.observer = MyBlocObserver();
   runApp(const AppRoot());
 }

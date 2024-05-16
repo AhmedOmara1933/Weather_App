@@ -96,7 +96,7 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
 
   searchWeatherData({String? text}) {
     emit(SearchWeatherDataLoadingState());
-    DioHelper.getData(url: 'v1/forecast.json', query: {
+    DioHelper1.getData(url: 'v1/forecast.json', query: {
       'key': 'ea36ba7cf6fc4eb482a154659242402',
       'q': '$text ',
       'days': 4,
@@ -115,7 +115,7 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
 
   getWeatherData() {
     emit(GetWeatherDataLoadingState());
-    DioHelper.getData(url: 'v1/forecast.json', query: {
+    DioHelper1.getData(url: 'v1/forecast.json', query: {
       'key': 'ea36ba7cf6fc4eb482a154659242402',
       'q': 'egypt',
       'days': 4,

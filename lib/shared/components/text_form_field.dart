@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/shared/styles/color.dart';
 
 // ignore: must_be_immutable
 class DefaultTextFormField extends StatelessWidget {
@@ -44,7 +45,8 @@ class DefaultTextFormField extends StatelessWidget {
         this.iconSize,
         this.outlineInputBorder = 10.0,
         this.textFontSize,
-        this.labelText});
+        this.labelText,
+        });
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +64,10 @@ class DefaultTextFormField extends StatelessWidget {
           keyboardType: keyboardType,
           validator: validate,
           decoration: InputDecoration(
-            // focusedBorder: OutlineInputBorder(
-            //   borderSide: BorderSide(color: Colors.white),
-            // ),
-            // enabledBorder: OutlineInputBorder(
-            //   borderSide: BorderSide(color: Colors.white),
-            // ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: baseColor),
+              borderRadius: BorderRadius.circular(10.0)
+            ),
             contentPadding: contentPadding == true
                 ? const EdgeInsets.symmetric(horizontal: 20.0)
                 : null,

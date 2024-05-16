@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/layout/weather_home_layout.dart';
+import 'package:weather_app/modules/onboarding_screen/onboarding_screen.dart';
 import '../modules/screens/1.intro_page.dart';
 import '../shared/cubit/weather_app_cubit.dart';
 import '../shared/styles/color.dart';
@@ -31,7 +33,7 @@ class AppRoot extends StatelessWidget {
             ),
           ),
           debugShowCheckedModeBanner: false,
-          home: IntroPage()),
+          home: OnBoardingScreen()),
     );
   }
 }

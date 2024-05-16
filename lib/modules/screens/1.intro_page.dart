@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:weather_app/layout/weather_home_layout.dart';
 import 'package:weather_app/shared/styles/color.dart';
 
+import '../login/login.dart';
+import '../register/register_screen.dart';
+
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
@@ -119,7 +122,7 @@ class IntroPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => WeatherHomeLayout(),
+                                builder: (context) => WeatherRegisterScreen(),
                               ));
                         },
                         child: const Text(
@@ -149,7 +152,7 @@ class IntroPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => WeatherHomeLayout(),
+                                builder: (context) => Login(),
                               ));
                         },
                         child: const Text(
