@@ -7,9 +7,9 @@ import 'package:weather_app/shared/components/function.dart';
 
 import '../../layout/weather_home_layout.dart';
 import '../../shared/components/deaulttextforrmField.dart';
-import 'cubit/login_cubit.dart';
-import 'cubit/login_state.dart';
 
+import 'cubit/weather_login_cubit.dart';
+import 'cubit/weather_login_state.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -20,31 +20,28 @@ class Login extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
-          if(state is LoginSuccessState){
-            if(state.loginModel.status!){
+          if (state is LoginSuccessState) {
+            if (state.loginModel.status!) {
               Fluttertoast.showToast(
-                  msg:state.loginModel.message!,
+                  msg: state.loginModel.message!,
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.CENTER,
                   timeInSecForIosWeb: 1,
                   backgroundColor: Colors.green,
                   textColor: Colors.white,
-                  fontSize: 16.0
-              );
+                  fontSize: 16.0);
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
               navigateTo(context, WeatherHomeLayout(), true);
-            }
-            else{
+            } else {
               Fluttertoast.showToast(
-                  msg:state.loginModel.message!,
+                  msg: state.loginModel.message!,
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.CENTER,
                   timeInSecForIosWeb: 1,
                   backgroundColor: Colors.red,
                   textColor: Colors.white,
-                  fontSize: 16.0
-              );
+                  fontSize: 16.0);
               print(state.loginModel.message);
             }
           }
@@ -55,8 +52,7 @@ class Login extends StatelessWidget {
             appBar: AppBar(
               toolbarHeight: 0.0,
               systemOverlayStyle: SystemUiOverlayStyle(
-                  systemNavigationBarColor: Colors.white30
-              ),
+                  systemNavigationBarColor: Colors.white30),
             ),
             body: Container(
               width: double.infinity,
@@ -64,8 +60,7 @@ class Login extends StatelessWidget {
                   image: DecorationImage(
                       image: AssetImage(
                           'images/WhatsApp Image 2024-02-21 at 18.21.53_27a4c9e4.jpg'),
-                      fit: BoxFit.cover
-                  )),
+                      fit: BoxFit.cover)),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Center(
@@ -144,13 +139,14 @@ class Login extends StatelessWidget {
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               child: MaterialButton(
                                 padding:
-                                const EdgeInsets.symmetric(vertical: 15.0),
+                                    const EdgeInsets.symmetric(vertical: 15.0),
                                 color: Colors.blue,
                                 onPressed: () {
                                   if (cubit.formKey.currentState!.validate()) {
                                     cubit.userLogin(
                                         email: cubit.emailController.text,
-                                        password: cubit.passwordController.text);
+                                        password:
+                                            cubit.passwordController.text);
                                   }
                                 },
                                 child: const Text(
@@ -161,8 +157,8 @@ class Login extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            fallback: (context) =>
-                            const Center(child: CircularProgressIndicator()),
+                            fallback: (context) => const Center(
+                                child: CircularProgressIndicator()),
                           ),
                           const SizedBox(height: 10.0),
                           Row(
@@ -171,7 +167,8 @@ class Login extends StatelessWidget {
                               const Text(
                                 'Don\'t have an account ',
                                 style: TextStyle(
-                                    fontSize: 16.0, fontWeight: FontWeight.bold),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                               TextButton(
                                 onPressed: () {},

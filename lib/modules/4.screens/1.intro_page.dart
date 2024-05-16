@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:weather_app/layout/weather_home_layout.dart';
 import 'package:weather_app/shared/styles/color.dart';
-
-import '../login/login.dart';
-import '../register/register_screen.dart';
+import '../2.login/login_screen.dart';
+import '../3.register/register_screen.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});

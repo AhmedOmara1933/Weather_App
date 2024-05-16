@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/modules/2.login/cubit/weather_login_state.dart';
 import '../../../model/login_model.dart';
 import '../../../shared/network/end_points.dart';
 import '../../../shared/network/remote.dart';
-import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitial());

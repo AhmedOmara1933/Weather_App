@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:weather_app/modules/screens/1.intro_page.dart';
 import 'package:weather_app/shared/components/function.dart';
 
 import '../../model/onboarding_model.dart';
+import '../4.screens/1.intro_page.dart';
 
 // ignore: must_be_immutable
 class OnBoardingScreen extends StatefulWidget {

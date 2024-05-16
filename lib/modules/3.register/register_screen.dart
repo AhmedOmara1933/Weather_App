@@ -1,16 +1,16 @@
+
+// ignore: must_be_immutable
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/modules/register/register_cubit/Weather_register_state.dart';
-import 'package:weather_app/modules/register/register_cubit/weather_register_cubit.dart';
+import 'package:weather_app/modules/3.register/register_cubit/weather_register_cubit.dart';
+
 import '../../shared/components/function.dart';
 import '../../shared/components/text_form_field.dart';
-import '../login/login.dart';
+import '../2.login/login_screen.dart';
+import '../register/register_cubit/Weather_register_state.dart';
 
-
-
-// ignore: must_be_immutable
 class WeatherRegisterScreen extends StatelessWidget {
   var nameController = TextEditingController();
   var phoneController = TextEditingController();

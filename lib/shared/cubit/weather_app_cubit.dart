@@ -5,10 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/shared/cubit/weather_app_state.dart';
 import 'package:weather_app/shared/network/remote.dart';
-
-import '../../modules/screens/2.home_screen.dart';
-import '../../modules/screens/3.location_screen.dart';
-import '../../modules/screens/5.profile_screen.dart';
+import '../../modules/4.screens/2.home_screen.dart';
+import '../../modules/4.screens/3.location_screen.dart';
+import '../../modules/4.screens/5.profile_screen.dart';
 import '../styles/color.dart';
 import 'dart:io';
 

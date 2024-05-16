@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../model/register_model.dart';
 import '../../../shared/network/end_points.dart';
 import '../../../shared/network/remote.dart';
-import 'Weather_register_state.dart';
+import '../../register/register_cubit/Weather_register_state.dart';
 
 class WeatherRegisterCubit extends Cubit<WeatherRegisterState> {
   WeatherRegisterCubit() : super(WeatherRegisterInitial());
