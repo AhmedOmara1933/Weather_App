@@ -5,8 +5,10 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:weather_app/shared/components/build_fl_chart.dart';
 import 'package:weather_app/shared/cubit/weather_app_cubit.dart';
 import 'package:weather_app/shared/cubit/weather_app_state.dart';
-import '../shared/components/build_category_item_1.dart';
-import '../shared/components/build_category_item_2.dart';
+
+import '../../shared/components/build_category_item_1.dart';
+import '../../shared/components/build_category_item_2.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

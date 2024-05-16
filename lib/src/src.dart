@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../modules/1.intro_page.dart';
+import '../modules/screens/1.intro_page.dart';
 import '../shared/cubit/weather_app_cubit.dart';
 import '../shared/styles/color.dart';
 
@@ -16,8 +15,7 @@ class AppRoot extends StatelessWidget {
         BlocProvider(
             create: (context) => WeatherAppCubit()
               ..searchWeatherData()
-              ..getWeatherData()
-        ),
+              ..getWeatherData()),
       ],
       child: MaterialApp(
           theme: ThemeData(
