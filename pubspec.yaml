@@ -39,6 +39,8 @@ dependencies:
   curved_navigation_bar: ^1.0.3 #latest version
   liquid_pull_to_refresh: ^3.0.1
   image_picker: ^1.0.7
+  smooth_page_indicator: ^1.1.0
+  fluttertoast: ^8.2.5
   fl_chart: ^0.66.2
 
 

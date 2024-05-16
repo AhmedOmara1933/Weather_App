@@ -56,9 +56,7 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
 
   String getDayName(String dateString) {
     DateTime dateTime = DateTime.parse(dateString);
-    // Use the 'weekday' property to get the day of the week (1 for Monday, 7 for Sunday)
     int dayOfWeek = dateTime.weekday;
-    // Create a list of day names
     List<String> dayNames = [
       'Monday',
       'Tuesday',
