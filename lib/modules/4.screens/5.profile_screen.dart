@@ -13,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
+       var cubit=WeatherAppCubit.get(context);
         return Container(
           decoration: const BoxDecoration(
               image: DecorationImage(

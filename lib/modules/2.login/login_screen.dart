@@ -1,13 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:weather_app/modules/3.register/register_screen.dart';
-import 'package:weather_app/shared/components/custom_onboarding_buttom.dart';
 import 'package:weather_app/shared/components/function.dart';
 import '../../layout/weather_home_layout.dart';
+import '../../shared/components/constants/constants.dart';
+import '../../shared/components/custom_button.dart';
 import '../../shared/components/text_form_field.dart';
 import 'cubit/weather_login_cubit.dart';
 import 'cubit/weather_login_state.dart';
@@ -31,10 +30,13 @@ class Login extends StatelessWidget {
               //     backgroundColor: Colors.green,
               //     textColor: Colors.white,
               //     fontSize: 16.0);
-              flutterToast(msg: state.loginModel.message!,backgroundColor: Colors.green);
+              flutterToast(
+                  msg: state.loginModel.message!,
+                  backgroundColor: Colors.green);
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
               navigateTo(context, WeatherHomeLayout(), true);
+              token=state.loginModel.data!.token!;
             } else {
               // Fluttertoast.showToast(
               //     msg: state.loginModel.message!,
@@ -44,7 +46,8 @@ class Login extends StatelessWidget {
               //     backgroundColor: Colors.red,
               //     textColor: Colors.white,
               //     fontSize: 16.0);
-              flutterToast(msg: state.loginModel.message!,backgroundColor: Colors.red);
+              flutterToast(
+                  msg: state.loginModel.message!, backgroundColor: Colors.red);
               print(state.loginModel.message);
             }
           }
@@ -138,12 +141,13 @@ class Login extends StatelessWidget {
                                 child: ConditionalBuilder(
                                   condition: state is! LoginLoadingState,
                                   builder: (context) => CustomButton(
-                                    onPressed: (){
-                                      if (cubit.formKey.currentState!.validate()) {
+                                    onPressed: () {
+                                      if (cubit.formKey.currentState!
+                                          .validate()) {
                                         cubit.userLogin(
                                             email: cubit.emailController.text,
                                             password:
-                                            cubit.passwordController.text);
+                                                cubit.passwordController.text);
                                       }
                                     },
                                     child: Text(
@@ -171,7 +175,8 @@ class Login extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  navigateTo(context, WeatherRegisterScreen(), false);
+                                  navigateTo(
+                                      context, WeatherRegisterScreen(), false);
                                 },
                                 child: const Text(
                                   'Register Now',

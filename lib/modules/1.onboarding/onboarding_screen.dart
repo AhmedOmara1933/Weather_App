@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:weather_app/shared/components/custom_onboarding_buttom.dart';
 import 'package:weather_app/shared/components/function.dart';
 import '../../model/onboarding_model.dart';
+import '../../shared/components/custom_button.dart';
+import '../../shared/styles/color.dart';
 import '../4.screens/1.intro_page.dart';
 
 // ignore: must_be_immutable
@@ -42,7 +42,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           toolbarHeight: 0.0,
           backgroundColor: Colors.white,
           systemOverlayStyle: SystemUiOverlayStyle(
-            systemNavigationBarColor: Colors.white30
+            systemNavigationBarColor: Colors.white30,
+            statusBarColor: baseColor
           ),
         ),
         body: Container(
@@ -50,8 +51,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
-                      'images/WhatsApp Image 2024-02-21 at 18.21.53_27a4c9e4.jpg'),
-                fit: BoxFit.cover
+                      'images/WhatsApp Image 2024-02-21 at 18.21.53_27a4c9e4.jpg'
+                  ),
+                fit: BoxFit.cover,
               )),
           child: Column(
             children: [
@@ -86,7 +88,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           onBoardingModel[index].image,
                         ),
                         fit: BoxFit.cover,
-                        height: 400.0,
+                        height: 340.0,
                         width: double.infinity,
                       ),
                       Padding(

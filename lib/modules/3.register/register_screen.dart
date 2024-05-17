@@ -1,12 +1,9 @@
-
-// ignore: must_be_immutable
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/modules/3.register/register_cubit/Weather_register_state.dart';
-import 'package:weather_app/shared/components/custom_onboarding_buttom.dart';
+import '../../shared/components/custom_button.dart';
 import '../../shared/components/function.dart';
 import '../../shared/components/text_form_field.dart';
 import '../2.login/login_screen.dart';
@@ -27,14 +24,14 @@ class WeatherRegisterScreen extends StatelessWidget {
       child: BlocConsumer<WeatherRegisterCubit, WeatherRegisterState>(
         listener: (context, state) {
           // TODO: implement listener
-          if(state is WeatherRegisterSuccessState){
-            if(state.registerModel!.status!){
+          if (state is WeatherRegisterSuccessState) {
+            if (state.registerModel!.status!) {
               print(state.registerModel!.message);
               print(state.registerModel!.data!.token);
               navigateTo(context, Login(), true);
               flutterToast(msg: state.registerModel!.message!);
-            }
-            else{
+
+            } else {
               flutterToast(msg: state.registerModel!.message!);
             }
           }
@@ -44,8 +41,7 @@ class WeatherRegisterScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               systemOverlayStyle: SystemUiOverlayStyle(
-                  systemNavigationBarColor: Colors.white30
-              ),
+                  systemNavigationBarColor: Colors.white30),
             ),
             body: Container(
               width: double.infinity,
@@ -53,8 +49,7 @@ class WeatherRegisterScreen extends StatelessWidget {
                   image: DecorationImage(
                       image: AssetImage(
                           'images/WhatsApp Image 2024-02-21 at 18.21.53_27a4c9e4.jpg'),
-                      fit: BoxFit.cover
-                  )),
+                      fit: BoxFit.cover)),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Form(
@@ -68,7 +63,8 @@ class WeatherRegisterScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image(
-                                image: AssetImage('images/8950745-removebg-preview.png'),
+                                image: AssetImage(
+                                    'images/8950745-removebg-preview.png'),
                                 height: 220.0,
                               ),
                             ],
@@ -83,7 +79,7 @@ class WeatherRegisterScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                           Padding(
+                          Padding(
                             padding: EdgeInsets.symmetric(vertical: 15.0),
                             child: Text(
                               'Register here to browse weather condition',
@@ -123,7 +119,6 @@ class WeatherRegisterScreen extends StatelessWidget {
                             margin: 20.0,
                             controller: emailController,
                             validate: (value) {
-
                               if (value!.isEmpty) {
                                 return 'Email Address must be fill';
                               }
@@ -157,9 +152,10 @@ class WeatherRegisterScreen extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: ConditionalBuilder(
-                                  condition: state is! WeatherRegisterLoadingState,
+                                  condition:
+                                      state is! WeatherRegisterLoadingState,
                                   builder: (context) => CustomButton(
-                                    onPressed: (){
+                                    onPressed: () {
                                       if (formKey.currentState!.validate()) {
                                         cubit.userRegister(
                                             name: emailController.text,
@@ -175,7 +171,8 @@ class WeatherRegisterScreen extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                  fallback: (context) => Center(child: CircularProgressIndicator()),
+                                  fallback: (context) => Center(
+                                      child: CircularProgressIndicator()),
                                 ),
                               ),
                             ],
@@ -187,7 +184,8 @@ class WeatherRegisterScreen extends StatelessWidget {
                               const Text(
                                 'Do you have an account?',
                                 style: TextStyle(
-                                    fontSize: 16.0, fontWeight: FontWeight.bold),
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                               TextButton(
                                 onPressed: () {
