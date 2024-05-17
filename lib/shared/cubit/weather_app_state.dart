@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import '../../model/profile_model.dart';
+
 abstract class WeatherAppState {}
 
 class WeatherAppInitial extends WeatherAppState {}
@@ -49,4 +51,18 @@ class GetWeatherNameDataErrorState extends WeatherAppState {
   final String? error;
 
   GetWeatherNameDataErrorState({required this.error});
+}
+
+class WeatherLoadingProfileDataState extends WeatherAppState {}
+
+class WeatherSuccessProfileDataState extends WeatherAppState {
+  final ProfileModel? profileModel;
+
+  WeatherSuccessProfileDataState({required this.profileModel});
+}
+
+class WeatherErrorProfileDataState extends WeatherAppState {
+  final String error;
+
+  WeatherErrorProfileDataState({required this.error});
 }

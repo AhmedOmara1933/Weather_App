@@ -9,7 +9,7 @@ class DefaultTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validate;
   final String? hintText;
-  final String?labelText;
+  final String? labelText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final void Function()? suffixOnPressed;
@@ -24,29 +24,29 @@ class DefaultTextFormField extends StatelessWidget {
   final double? textFontSize;
   final double outlineInputBorder;
 
-  const DefaultTextFormField(
-      {super.key,
-        this.controller,
-        this.onFieldSubmitted,
-        this.obscureText = false,
-        this.validate,
-        this.onChanged,
-        this.keyboardType,
-        this.hintText,
-        this.prefixIcon,
-        this.suffixIcon,
-        this.suffixOnPressed,
-        this.iconColor,
-        this.textColor,
-        this.margin = 30.0,
-        this.contentPadding = false,
-        this.focusedBorder = Colors.black,
-        this.enabledBorder = Colors.black,
-        this.iconSize,
-        this.outlineInputBorder = 10.0,
-        this.textFontSize,
-        this.labelText,
-        });
+  const DefaultTextFormField({
+    super.key,
+    this.controller,
+    this.onFieldSubmitted,
+    this.obscureText = false,
+    this.validate,
+    this.onChanged,
+    this.keyboardType,
+    this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.suffixOnPressed,
+    this.iconColor,
+    this.textColor,
+    this.margin = 30.0,
+    this.contentPadding = false,
+    this.focusedBorder = Colors.black,
+    this.enabledBorder = Colors.black,
+    this.iconSize,
+    this.outlineInputBorder = 10.0,
+    this.textFontSize,
+    this.labelText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +65,11 @@ class DefaultTextFormField extends StatelessWidget {
           validator: validate,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: baseColor),
-              borderRadius: BorderRadius.circular(10.0)
-            ),
+                borderSide: BorderSide(color: baseColor),
+                borderRadius: BorderRadius.circular(10.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(10.0)),
             contentPadding: contentPadding == true
                 ? const EdgeInsets.symmetric(horizontal: 20.0)
                 : null,

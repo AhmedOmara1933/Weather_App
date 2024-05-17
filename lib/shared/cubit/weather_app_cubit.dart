@@ -5,9 +5,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:weather_app/model/weather_model.dart';
 import 'package:weather_app/shared/cubit/weather_app_state.dart';
 import 'package:weather_app/shared/network/remote.dart';
+import '../../model/profile_model.dart';
 import '../../modules/4.screens/2.home_screen.dart';
 import '../../modules/4.screens/3.location_screen.dart';
 import '../../modules/4.screens/5.profile_screen.dart';
+import '../components/constants/constants.dart';
+import '../network/end_points.dart';
 import '../styles/color.dart';
 import 'dart:io';
 
@@ -43,6 +46,26 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
       }
     }).catchError((error) {
       emit(ImagePickerErrorState(error: error.toString()));
+    });
+  }
+  //todo/////////////////////////////////////getProfileData////////////////////////////////////////
+
+
+  ProfileModel? profileModel;
+
+  void getProfileData() {
+    emit(WeatherLoadingProfileDataState());
+    DioHelper2.getData(
+      token: token,
+      url: PROFILE,
+    ).then((value) {
+      profileModel = ProfileModel.fromJson(value.data);
+      print(profileModel!.data!.name);
+      print(profileModel!.data!.phone);
+      emit(WeatherSuccessProfileDataState(profileModel: profileModel));
+    }).catchError((error) {
+      emit(WeatherErrorProfileDataState(error: error.toString()));
+      print(error);
     });
   }
 
@@ -126,4 +149,5 @@ class WeatherAppCubit extends Cubit<WeatherAppState> {
       print(error);
     });
   }
+
 }
