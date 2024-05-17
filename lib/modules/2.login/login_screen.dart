@@ -1,13 +1,14 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:weather_app/modules/3.register/register_screen.dart';
+import 'package:weather_app/shared/components/custom_onboarding_buttom.dart';
 import 'package:weather_app/shared/components/function.dart';
-
 import '../../layout/weather_home_layout.dart';
-import '../../shared/components/deaulttextforrmField.dart';
-
+import '../../shared/components/text_form_field.dart';
 import 'cubit/weather_login_cubit.dart';
 import 'cubit/weather_login_state.dart';
 
@@ -22,26 +23,28 @@ class Login extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginSuccessState) {
             if (state.loginModel.status!) {
-              Fluttertoast.showToast(
-                  msg: state.loginModel.message!,
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16.0);
+              // Fluttertoast.showToast(
+              //     msg: state.loginModel.message!,
+              //     toastLength: Toast.LENGTH_SHORT,
+              //     gravity: ToastGravity.CENTER,
+              //     timeInSecForIosWeb: 1,
+              //     backgroundColor: Colors.green,
+              //     textColor: Colors.white,
+              //     fontSize: 16.0);
+              flutterToast(msg: state.loginModel.message!,backgroundColor: Colors.green);
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
               navigateTo(context, WeatherHomeLayout(), true);
             } else {
-              Fluttertoast.showToast(
-                  msg: state.loginModel.message!,
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0);
+              // Fluttertoast.showToast(
+              //     msg: state.loginModel.message!,
+              //     toastLength: Toast.LENGTH_SHORT,
+              //     gravity: ToastGravity.CENTER,
+              //     timeInSecForIosWeb: 1,
+              //     backgroundColor: Colors.red,
+              //     textColor: Colors.white,
+              //     fontSize: 16.0);
+              flutterToast(msg: state.loginModel.message!,backgroundColor: Colors.red);
               print(state.loginModel.message);
             }
           }
@@ -107,7 +110,7 @@ class Login extends StatelessWidget {
                               return null;
                             },
                             keyboardType: TextInputType.emailAddress,
-                            text: 'Email Address',
+                            hintText: 'Email Address',
                             prefixIcon: Icons.email,
                           ),
                           DefaultTextFormField(
@@ -120,7 +123,7 @@ class Login extends StatelessWidget {
                               return null;
                             },
                             obscureText: cubit.isPassword,
-                            text: 'Password',
+                            hintText: 'Password',
                             prefixIcon: Icons.lock,
                             suffixIcon: cubit.isPassword
                                 ? Icons.visibility
@@ -129,49 +132,47 @@ class Login extends StatelessWidget {
                               cubit.changePassword();
                             },
                           ),
-                          ConditionalBuilder(
-                            condition: state is! LoginLoadingState,
-                            builder: (context) => Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: MaterialButton(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15.0),
-                                color: Colors.blue,
-                                onPressed: () {
-                                  if (cubit.formKey.currentState!.validate()) {
-                                    cubit.userLogin(
-                                        email: cubit.emailController.text,
-                                        password:
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ConditionalBuilder(
+                                  condition: state is! LoginLoadingState,
+                                  builder: (context) => CustomButton(
+                                    onPressed: (){
+                                      if (cubit.formKey.currentState!.validate()) {
+                                        cubit.userLogin(
+                                            email: cubit.emailController.text,
+                                            password:
                                             cubit.passwordController.text);
-                                  }
-                                },
-                                child: const Text(
-                                  'Sign In',
-                                  style: TextStyle(
-                                      fontSize: 20.0, color: Colors.white),
-                                  textAlign: TextAlign.center,
+                                      }
+                                    },
+                                    child: Text(
+                                      'Sign In',
+                                      style: TextStyle(
+                                          fontSize: 20.0, color: Colors.white),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  fallback: (context) => const Center(
+                                      child: CircularProgressIndicator()),
                                 ),
                               ),
-                            ),
-                            fallback: (context) => const Center(
-                                child: CircularProgressIndicator()),
+                            ],
                           ),
                           const SizedBox(height: 10.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                'Don\'t have an account ',
+                                'Don\'t have an account?',
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  navigateTo(context, WeatherRegisterScreen(), false);
+                                },
                                 child: const Text(
                                   'Register Now',
                                   style: TextStyle(color: Colors.blue),

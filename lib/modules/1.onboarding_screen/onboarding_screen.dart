@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:weather_app/shared/components/custom_onboarding_buttom.dart';
 import 'package:weather_app/shared/components/function.dart';
-
 import '../../model/onboarding_model.dart';
 import '../4.screens/1.intro_page.dart';
 
@@ -149,104 +149,56 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             spacing: 10,
                             dotHeight: 6.0),
                       ),
-                      isLast==true?ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: SizedBox(
-                          child: MaterialButton(
-                            color: Colors.blue,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15.0,
-                                horizontal: 100.0
+                      isLast==true?Row(
+                        children: [
+                          Expanded(
+                            child:CustomButton(
+                              onPressed: (){
+                                navigateTo(context, IntroPage(), true);
+                              },
+                              child: isLast
+                                  ? const Text(
+                                'get started',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              )
+                                  : const Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                                color: Colors.white,
+                              ),
                             ),
-                            onPressed: () {
-                             navigateTo(context, IntroPage(), true);
+                          ),
+                        ],
+                      ):
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomButton(
+                            onPressed: (){
+                              controller.previousPage(
+                                  duration:
+                                  const Duration(milliseconds: 200),
+                                  curve: Curves.bounceInOut);
                             },
-                            child: isLast
-                                ? const Text(
-                              'get started',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0),
-                            )
-                                : const Icon(
+                            child: Icon(
                               Icons.arrow_back_ios_new_outlined,
                               color: Colors.white,
                             ),
                           ),
-                        ),
-                      ):Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: SizedBox(
-                              child: MaterialButton(
-                                color: Colors.blue,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 15.0,
-                                    horizontal: 50.0
-                                ),
-                                onPressed: () {
-                                  controller.previousPage(
-                                      duration:
-                                      const Duration(milliseconds: 200),
-                                      curve: Curves.bounceInOut);
-                                },
-                                child: isLast
-                                    ? const Text(
-                                  'get started',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0),
-                                )
-                                    : const Icon(
-                                  Icons.arrow_back_ios_new_outlined,
-                                  color: Colors.white,
-                                ),
-                              ),
+                          CustomButton(
+                            onPressed: (){
+                              controller.nextPage(
+                                  duration:
+                                  const Duration(milliseconds: 200),
+                                  curve: Curves.bounceInOut);
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: Colors.white,
                             ),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: SizedBox(
-                              child: MaterialButton(
-                                color: Colors.blue,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 15.0,
-                                    horizontal: 50.0
-                                ),
-                                onPressed: () {
-                                  if (isLast) {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //       builder: (context) =>
-                                    //       const WeatherLoginScreen(),
-                                    //     ));
-                                  } else {
-                                    controller.nextPage(
-                                        duration:
-                                        const Duration(milliseconds: 200),
-                                        curve: Curves.bounceInOut);
-                                  }
-                                },
-                                child: isLast
-                                    ? const Text(
-                                  'get started',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0),
-                                )
-                                    : const Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          )
                         ],
                       ),
                     ],
@@ -255,6 +207,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ],
           ),
-        ));
+        )
+    );
   }
 }

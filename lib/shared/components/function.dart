@@ -19,13 +19,13 @@ navigateTo(context, screen, bool isFinish) {
 
 }
 
-flutterToast({required String msg, Color? textColor}) {
+flutterToast({required String msg, Color? backgroundColor}) {
   return Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 5,
-      backgroundColor: textColor,
+      backgroundColor: backgroundColor,
       textColor: Colors.white,
       fontSize: 16.0);
 }

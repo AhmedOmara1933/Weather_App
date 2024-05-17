@@ -1,16 +1,18 @@
 
 // ignore: must_be_immutable
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/modules/3.register/register_cubit/weather_register_cubit.dart';
-
+import 'package:weather_app/modules/3.register/register_cubit/Weather_register_state.dart';
+import 'package:weather_app/shared/components/custom_onboarding_buttom.dart';
 import '../../shared/components/function.dart';
 import '../../shared/components/text_form_field.dart';
 import '../2.login/login_screen.dart';
-import '../register/register_cubit/Weather_register_state.dart';
+import 'register_cubit/weather_register_cubit.dart';
 
+// ignore: must_be_immutable
 class WeatherRegisterScreen extends StatelessWidget {
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
@@ -151,34 +153,32 @@ class WeatherRegisterScreen extends StatelessWidget {
                             hintText: 'Password',
                             prefixIcon: Icons.lock,
                           ),
-                          ConditionalBuilder(
-                            condition: state is! WeatherRegisterLoadingState,
-                            builder: (context) => MaterialButton(
-                              onPressed: () {
-                                if (formKey.currentState!.validate()) {
-                                  cubit.userRegister(
-                                      name: emailController.text,
-                                      phone: phoneController.text,
-                                      email: emailController.text,
-                                      password: passwordController.text);
-                                }
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                width: double.infinity,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15.0),
-                                child: const Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                      fontSize: 20.0, color: Colors.white),
-                                  textAlign: TextAlign.center,
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ConditionalBuilder(
+                                  condition: state is! WeatherRegisterLoadingState,
+                                  builder: (context) => CustomButton(
+                                    onPressed: (){
+                                      if (formKey.currentState!.validate()) {
+                                        cubit.userRegister(
+                                            name: emailController.text,
+                                            phone: phoneController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text);
+                                      }
+                                    },
+                                    child: Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                          fontSize: 20.0, color: Colors.white),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  fallback: (context) => Center(child: CircularProgressIndicator()),
                                 ),
                               ),
-                            ),
-                            fallback: (context) => Center(child: CircularProgressIndicator()),
+                            ],
                           ),
                           const SizedBox(height: 10.0),
                           Row(
