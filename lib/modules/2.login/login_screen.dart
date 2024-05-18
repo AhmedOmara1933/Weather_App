@@ -36,7 +36,7 @@ class Login extends StatelessWidget {
               print(state.loginModel.message);
               print(state.loginModel.data!.token);
               navigateTo(context, WeatherHomeLayout(), true);
-              token=state.loginModel.data!.token!;
+              token = state.loginModel.data!.token!;
             } else {
               // Fluttertoast.showToast(
               //     msg: state.loginModel.message!,
